@@ -43,4 +43,4 @@ It presents a clean, elegant interface suitable for developers and professionals
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/<shariqkhan74>/<repo-name>.git
+   git clone https://github.com/shariqkhan74/portfolio.git
