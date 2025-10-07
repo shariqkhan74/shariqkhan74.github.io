@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mohd Shariq Ali Khan — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg1:#5b21b6;
+  --bg2:#06b6d4;
+  --accent:#9be7ff;
+  --text:#eaf2ff;
+  --muted:#cfeaf6;
+  --glass-border:rgba(255,255,255,0.12);
+  --max-width:1100px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Poppins',sans-serif;
+  color:var(--text);
+  background:linear-gradient(135deg,var(--bg1),var(--bg2));
+  scroll-behavior:smooth;
+  line-height:1.5;
+}
+
+/* glassy cards */
+.card{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(8px);
+  border:1px solid var(--glass-border);
+  border-radius:14px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.25);
+  padding:1.5rem;
+}
+
+/* NAVBAR */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(0,0,0,0.2);
+  backdrop-filter:blur(10px);
+}
+.navbar{
+  max-width:var(--max-width);
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:.75rem 1rem;
+}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:700;}
+.logo{
+  width:40px;height:40px;border-radius:8px;
+  background:linear-gradient(135deg,var(--accent),#ffffff33);
+  display:flex;align-items:center;justify-content:center;
+  color:#06202a;
+}
+nav ul{list-style:none;display:flex;gap:.8rem;}
+nav a{
+  color:var(--muted);text-decoration:none;font-weight:600;
+  padding:.5rem .75rem;border-radius:8px;
+  transition:.2s;
+}
+nav a:hover,nav a.active{color:var(--text);background:rgba(255,255,255,0.1);}
+
+/* hamburger */
+.menu-btn{
+  display:none;flex-direction:column;gap:4px;cursor:pointer;
+}
+.menu-btn span{
+  width:25px;height:3px;background:var(--text);border-radius:2px;
+}
+
+/* layout */
+.wrap{max-width:var(--max-width);margin:auto;padding:2.5rem 1rem;}
+section{margin-bottom:2.5rem;}
+h3{margin-bottom:1rem;font-size:1.25rem;}
+
+/* HERO */
+.hero{
+  display:grid;
+  grid-template-columns:1fr 350px;
+  gap:2rem;
+  align-items:center;
+}
+.hero h1{font-size:2rem;margin:.5rem 0;}
+.hero p{color:var(--muted);}
+.cta{
+  display:inline-block;margin-top:1rem;
+  background:linear-gradient(90deg,var(--accent),#ffffff33);
+  color:#06202a;font-weight:700;
+  padding:.6rem 1rem;border-radius:10px;
+  text-decoration:none;transition:.2s;
+}
+.cta:hover{transform:translateY(-3px);}
+
+/* grids */
+.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));}
+
+/* skill tags */
+.skill-tag{display:inline-block;background:rgba(255,255,255,0.1);padding:.4rem .8rem;border-radius:20px;font-size:.85rem;margin:.2rem;}
+
+/* project */
+.project{display:flex;gap:1rem;align-items:flex-start;border:1px solid rgba(255,255,255,0.1);padding:1rem;border-radius:12px;transition:.2s;}
+.project:hover{transform:translateY(-4px);}
+.project-thumb{width:70px;height:60px;border-radius:8px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-weight:700;}
+.project-body h4{margin-bottom:.4rem;}
+.project-body p{color:var(--muted);font-size:.9rem;}
+
+/* timeline */
+.job{border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:1rem;margin-bottom:.8rem;}
+.job h4{font-size:1rem;}
+.job p,.bullet{color:var(--muted);font-size:.9rem;}
+.bullet{margin-top:.5rem;padding-left:1.2rem;}
+.bullet li{margin-bottom:.4rem;}
+
+/* contact */
+form input,form textarea{
+  width:100%;padding:.6rem;border-radius:8px;
+  border:1px solid rgba(255,255,255,0.15);
+  background:transparent;color:var(--text);
+  margin-bottom:.8rem;
+}
+form button{
+  background:linear-gradient(90deg,var(--accent),#ffffff33);
+  border:none;padding:.6rem 1.2rem;border-radius:8px;font-weight:700;cursor:pointer;
+}
+
+/* FOOTER */
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:1.5rem 0;border-top:1px solid rgba(255,255,255,0.1);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;text-align:center;}
+  .hero .cta{margin:auto;}
+}
+@media(max-width:700px){
+  nav ul{
+    position:absolute;top:64px;left:0;width:100%;
+    flex-direction:column;align-items:center;
+    background:rgba(0,0,0,0.85);
+    backdrop-filter:blur(10px);
+    max-height:0;overflow:hidden;transition:.3s;
+  }
+  nav ul.open{max-height:300px;padding:1rem 0;}
+  .menu-btn{display:flex;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="navbar">
+    <div class="brand"><div class="logo">MS</div>Mohd Shariq</div>
+    <nav>
+      <div class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+      <ul id="menu">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section id="home" class="hero card">
+  <div>
+    <h2>Hello, I'm</h2>
+    <h1>Mohd Shariq Ali Khan</h1>
+    <p>Software developer building scalable web apps with .NET, Node.js & modern front-end tech.</p>
+    <a href="#projects" class="cta">View Projects →</a>
+  </div>
+  <div class="card" style="text-align:center">
+    <div style="font-size:3rem;">👨‍💻</div>
+    <p>Software Developer</p>
+    <p class="muted">Bareilly, U.P., India</p>
+  </div>
+</section>
+
+<section id="about" class="card">
+  <h3>About Me</h3>
+  <p>I’m a full-stack developer experienced with C#/ASP.NET, Node.js/Express, and MySQL. I love crafting responsive UIs and reliable APIs that solve real problems.</p>
+</section>
+
+<section id="skills" class="card">
+  <h3>Skills</h3>
+  <div>
+    <span class="skill-tag">C# / ASP.NET</span>
+    <span class="skill-tag">Node.js / Express</span>
+    <span class="skill-tag">HTML / CSS / JS</span>
+    <span class="skill-tag">SQL / MySQL</span>
+    <span class="skill-tag">WordPress / Elementor</span>
+    <span class="skill-tag">Bootstrap / Tailwind</span>
+    <span class="skill-tag">Visual Studio / VS Code</span>
+  </div>
+</section>
+
+<section id="projects" class="card">
+  <h3>Projects</h3>
+  <div class="project"><div class="project-thumb">UH</div><div class="project-body"><h4>UserHub</h4><p>User management platform with secure login, CRUD APIs, and clean UI.</p></div></div>
+  <div class="project"><div class="project-thumb">HR</div><div class="project-body"><h4>HROne</h4><p>HR system with role-based access, admin dashboards, and REST APIs.</p></div></div>
+</section>
+
+<section id="experience" class="card">
+  <h3>Experience</h3>
+  <div class="job">
+    <h4>Software Developer – Al Hadaf Technologies</h4>
+    <p>Aug 2025 – Present</p>
+    <ul class="bullet">
+      <li>Developed MLM modules in ASP.NET with role-based dashboards.</li>
+      <li>Designed wallet, ROI, and top-up systems with SQL optimization.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="education" class="card">
+  <h3>Education</h3>
+  <div class="job">
+    <h4>B.Tech (CSE)</h4>
+    <p>Dr. A.P.J. Abdul Kalam Technical University – 2024</p>
+  </div>
+</section>
+
+<section id="contact" class="card">
+  <h3>Contact</h3>
+  <form onsubmit="return handleForm(event)">
+    <input id="name" placeholder="Name" required>
+    <input id="email" type="email" placeholder="Email" required>
+    <textarea id="msg" rows="4" placeholder="Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+</main>
+
+<footer>© <span id="year"></span> Mohd Shariq Ali Khan</footer>
+
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+function toggleMenu(){document.getElementById('menu').classList.toggle('open');}
+function handleForm(e){
+  e.preventDefault();
+  const n=document.getElementById('name').value;
+  const em=document.getElementById('email').value;
+  const m=document.getElementById('msg').value;
+  const subj=encodeURIComponent("Portfolio Contact from "+n);
+  const body=encodeURIComponent("Name: "+n+"%0AEmail: "+em+"%0A%0A"+m);
+  window.location.href=`mailto:shariqkhan435@gmail.com?subject=${subj}&body=${body}`;
+}
+</script>
+
+</body>
+</html>
