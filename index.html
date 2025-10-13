@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mohd Shariq Ali Khan — Portfolio</title>
+
+  <!-- Google Font: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg1: #5b21b6; /* deep purple */
+      --bg2: #06b6d4; /* cyan */
+      --glass: rgba(255,255,255,0.08);
+      --card: rgba(255,255,255,0.06);
+      --accent: #9be7ff;
+      --text: #eaf2ff;
+      --muted: #cfeaf6;
+      --glass-border: rgba(255,255,255,0.12);
+      --max-width: 1100px;
+      --radius: 14px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:'Poppins',system-ui,Segoe UI,Roboto,Helvetica,Arial;
+      color:var(--text);
+      background: linear-gradient(135deg,var(--bg1),var(--bg2));
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      scroll-behavior:smooth;
+      line-height:1.45;
+    }
+
+    /* container */
+    .wrap{
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:48px 20px;
+    }
+
+    /* glass card */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border:1px solid var(--glass-border);
+      backdrop-filter: blur(8px) saturate(1.2);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow: 0 6px 30px rgba(2,6,23,0.35);
+    }
+
+    /* NAVBAR */
+    header {
+      position: sticky;
+      top: 12px;
+      z-index: 50;
+      padding: 12px 20px;
+      display:flex;
+      justify-content:center;
+      pointer-events:auto;
+    }
+    .nav-wrap{
+      width:100%;
+      max-width:var(--max-width);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .logo{
+      width:46px;height:46px;border-radius:10px;
+      background:linear-gradient(135deg,var(--accent),rgba(255,255,255,0.12));
+      display:flex;align-items:center;justify-content:center;
+      color:#06202a;font-weight:700;font-size:18px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+    }
+    .brand h1{margin:0;font-size:16px;font-weight:700}
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+
+    nav{display:flex;gap:10px;align-items:center}
+    nav a{
+      color:var(--muted);
+      text-decoration:none;
+      padding:10px 14px;border-radius:10px;
+      font-weight:600;font-size:14px;
+      transition: all .22s ease;
+    }
+    nav a:hover{background:rgba(255,255,255,0.04); color:var(--text); transform:translateY(-2px)}
+    nav a.active{background:linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); color:var(--text); box-shadow: inset 0 -3px 0 rgba(255,255,255,0.03)}
+
+    /* HERO */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:32px;
+      align-items:center;
+      padding:60px 0 36px;
+    }
+    .hero-left h2{margin:0;font-size:22px;color:var(--muted);font-weight:600}
+    .hero-left h1{margin:8px 0 14px;font-size:36px;line-height:1.05}
+    .hero-left p{margin:0 0 18px;color:var(--muted)}
+    .cta{
+      display:inline-flex;gap:12px;align-items:center;
+      background:linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      padding:12px 18px;border-radius:12px;color:var(--text);text-decoration:none;font-weight:700;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .cta:hover{transform:translateY(-4px); box-shadow:0 8px 30px rgba(2,6,23,0.45)}
+
+    .hero-right .profile-card{
+      display:flex;flex-direction:column;align-items:center;gap:12px;padding:18px;
+      text-align:center;
+    }
+    .avatar{
+      width:120px;height:120px;border-radius:18px;
+      background:linear-gradient(135deg,#fff1,rgba(255,255,255,0.04));
+      display:flex;align-items:center;justify-content:center;font-weight:700;font-size:36px;color:var(--text)
+    }
+    .meta{font-size:14px;color:var(--muted)}
+
+    /* SECTIONS */
+    section{padding:52px 0}
+    section h3{margin:0 0 18px;font-size:20px}
+    .grid{
+      display:grid;
+      gap:18px;
+      grid-template-columns:repeat(2,1fr);
+    }
+
+    /* About */
+    .about p{color:var(--muted)}
+
+    /* Skills */
+    .skills{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+    .skill-tag{
+      background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:8px 12px;border-radius:999px;font-weight:600;font-size:13px;color:var(--muted);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    .skill-bar{
+      background:rgba(255,255,255,0.03);
+      border-radius:12px;padding:8px;border:1px solid rgba(255,255,255,0.03);
+    }
+    .skill-bar .fill{
+      height:10px;border-radius:8px;
+      background:linear-gradient(90deg,var(--accent), rgba(255,255,255,0.2));
+      width:0%;
+      transition: width 900ms cubic-bezier(.2,.9,.3,1);
+    }
+    .skill-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px}
+
+    /* Projects */
+    .projects-list{display:grid;gap:14px}
+    .project{
+      display:flex;gap:14px;align-items:flex-start;
+      padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);
+      transition: transform .16s ease, box-shadow .16s ease;
+    }
+    .project:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(2,6,23,0.4)}
+    .project-thumb{width:88px;height:68px;border-radius:10px;background:linear-gradient(135deg,#fff1,rgba(255,255,255,0.02));display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--text)}
+    .project-body h4{margin:0 0 6px}
+    .project-body p{margin:0;font-size:14px;color:var(--muted)}
+    .tech {margin-top:8px;font-size:12px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}
+    .chip{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:8px;font-size:12px;border:1px solid rgba(255,255,255,0.02)}
+
+    /* Experience & Education */
+    .timeline{display:flex;flex-direction:column;gap:12px}
+    .job{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
+    .job h4{margin:0}
+    .job p{margin:6px 0 0;color:var(--muted)}
+    .bullet{margin:8px 0 0;padding-left:16px;color:var(--muted)}
+    .bullet li{margin-bottom:6px}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 320px;gap:18px}
+    .contact-card{display:flex;flex-direction:column;gap:10px}
+    .contact-card a{color:var(--muted);text-decoration:none;font-weight:600}
+    form label{display:block;margin-bottom:6px;font-weight:600;font-size:13px}
+    input,textarea{
+      width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);
+      background:transparent;color:var(--text);font-size:14px;
+    }
+    button[type="submit"]{
+      padding:10px 14px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent),rgba(255,255,255,0.18));
+      font-weight:700;cursor:pointer;
+    }
+
+    /* Footer */
+    footer{padding:26px 0;text-align:center;color:var(--muted);font-size:13px}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr; text-align:left}
+      .grid{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      header{top:8px}
+    }
+    @media (max-width:520px){
+      nav a{display:none}
+      .nav-right{display:flex;gap:10px}
+      .nav-toggle{display:inline-flex}
+    }
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .mb{margin-bottom:12px}
+    .fade-in{opacity:0; transform:translateY(12px); transition: all 680ms cubic-bezier(.2,.9,.3,1)}
+    .in-view{opacity:1; transform:none}
+  </style>
+</head>
+<body>
+
+  <!-- NAV / HEADER -->
+  <header>
+    <div class="nav-wrap card" role="banner">
+      <div class="brand" aria-hidden="true">
+        <div class="logo">MS</div>
+        <div>
+          <h1>Mohd Shariq Ali Khan</h1>
+          <p>Software Developer</p>
+        </div>
+      </div>
+
+      <nav role="navigation" aria-label="Main navigation">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="wrap">
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="hero-left card fade-in">
+        <h2>Hello, I'm</h2>
+        <h1>Mohd Shariq Ali Khan</h1>
+        <p class="muted">Software developer building secure, scalable web apps with .NET, Node.js and modern frontends. I make clean UI and reliable backends that solve real problems.</p>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:18px">
+          <a class="cta" href="#projects">View Projects →</a>
+          <a class="cta" href="mailto:shariqkhan435@gmail.com" style="background:transparent;border:1px solid rgba(255,255,255,0.04)">Email Me</a>
+        </div>
+
+        <div style="margin-top:20px;color:var(--muted);font-size:14px">
+          <strong>Location:</strong> Bareilly, U.P., India — <strong>Open to roles in web & software development</strong>
+        </div>
+      </div>
+
+      <aside class="hero-right card fade-in">
+        <div class="profile-card">
+          <div class="avatar">MS</div>
+          <div style="font-weight:700">Mohd Shariq Ali Khan</div>
+          <div class="meta">Software Developer — C#, ASP.NET, Node.js · B.Tech (CSE)</div>
+          <div style="display:flex;gap:10px;margin-top:8px">
+            <a class="chip" href="mailto:shariqkhan435@gmail.com">Email</a>
+            <a class="chip" href="https://wa.me/919058867374" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="chip" href="https://www.linkedin.com/in/mohd-shariq-ali-khan-a1b6792bb/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="chip" href="https://github.com/shariqkhan74" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about card fade-in">
+      <h3>About Me</h3>
+      <div class="grid">
+        <div>
+          <p>
+            I'm a full-stack software developer experienced in building dynamic, secure, and scalable web applications using C#/.NET, Node.js/Express, and SQL-based databases.
+            I craft responsive user interfaces with HTML, CSS, JavaScript and Bootstrap, build RESTful APIs, and work with WordPress/Elementor for CMS-driven projects.
+            I enjoy solving real-world problems with clean code, modern design and pragmatic architecture.
+          </p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start">
+          <div><strong>Contact</strong></div>
+          <div class="muted">Bareilly, U.P., India • +91 9058867374</div>
+          <div class="muted">Email: <a href="mailto:shariqkhan435@gmail.com" style="color:var(--muted)">shariqkhan435@gmail.com</a></div>
+          <div style="margin-top:8px"><strong>Languages:</strong> Hindi, English, Urdu</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="card fade-in">
+      <h3>Skills</h3>
+
+      <div style="display:flex;gap:18px;flex-wrap:wrap">
+        <div style="flex:1;min-width:280px">
+          <div class="mb"><strong>Core</strong></div>
+          <div class="skills mb">
+            <span class="skill-tag">C# / ASP.NET</span>
+            <span class="skill-tag">Node.js / Express</span>
+            <span class="skill-tag">HTML • CSS • JS</span>
+            <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">SQL / MySQL</span>
+            <span class="skill-tag">WordPress / Elementor</span>
+          </div>
+
+          <div style="margin-top:14px">
+            <div class="skill-row">
+              <div style="font-weight:700">Backend (.NET / Node.js)</div>
+              <div class="muted">90%</div>
+            </div>
+            <div class="skill-bar"><div class="fill" data-fill="90%"></div></div>
+
+            <div class="skill-row" style="margin-top:12px">
+              <div style="font-weight:700">Frontend (HTML/CSS/JS)</div>
+              <div class="muted">80%</div>
+            </div>
+            <div class="skill-bar"><div class="fill" data-fill="80%"></div></div>
+
+            <div class="skill-row" style="margin-top:12px">
+              <div style="font-weight:700">Databases (SQL/MySQL)</div>
+              <div class="muted">85%</div>
+            </div>
+            <div class="skill-bar"><div class="fill" data-fill="85%"></div></div>
+          </div>
+        </div>
+
+        <div style="flex:1;min-width:260px">
+          <div class="mb"><strong>Tools & Platforms</strong></div>
+          <div class="skills">
+            <span class="skill-tag">Visual Studio</span>
+            <span class="skill-tag">VS Code</span>
+            <span class="skill-tag">SQL Server Management Studio</span>
+            <span class="skill-tag">FileZilla</span>
+            <span class="skill-tag">GitHub</span>
+          </div>
+
+          <div style="margin-top:18px">
+            <div class="mb"><strong>Other</strong></div>
+            <div class="muted">Experience with authentication, role-based access, session management, building admin/user dashboards, payment and wallet modules for multi-level systems.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="card fade-in">
+      <h3>Selected Projects</h3>
+      <div class="projects-list">
+
+        <!-- Project 1 -->
+        <article class="project">
+          <div class="project-thumb">UH</div>
+          <div class="project-body">
+            <h4>UserHub — Smart User Management</h4>
+            <p>Full-stack user management platform with registration, email verification, secure login, sessions and CRUD APIs. Clean EJS-driven UI and RESTful Node.js backend for reliable user workflows.</p>
+            <div class="tech">
+              <span class="chip">Node.js</span>
+              <span class="chip">Express</span>
+              <span class="chip">MySQL</span>
+              <span class="chip">EJS • Bootstrap</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project">
+          <div class="project-thumb">HR</div>
+          <div class="project-body">
+            <h4>HROne — Lightweight HRMS</h4>
+            <p>An HR system built during an internship: authentication, role-based dashboards, APIs, and admin tools for department & designation management — practical for small businesses.</p>
+            <div class="tech">
+              <span class="chip">Node.js</span>
+              <span class="chip">Express</span>
+              <span class="chip">MySQL</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project">
+          <div class="project-thumb">WP</div>
+          <div class="project-body">
+            <h4>EduAdvise & MapPoint — WordPress Sites</h4>
+            <p>Responsive, SEO-friendly WordPress websites built with Elementor: custom themes, interactive maps and content management tailored for education and services sites.</p>
+            <div class="tech">
+              <span class="chip">WordPress</span>
+              <span class="chip">Elementor</span>
+              <span class="chip">SEO</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="project">
+          <div class="project-thumb">Tools</div>
+          <div class="project-body">
+            <h4>Utility Apps — Tax Calculator & Text Encryptor</h4>
+            <p>Small front-end utilities (HTML/CSS/JS) — an income tax calculator with validation and a text encryption/decryption tool with a custom algorithm and responsive UI.</p>
+            <div class="tech">
+              <span class="chip">HTML/CSS/JS</span>
+              <span class="chip">UX</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="card fade-in">
+      <h3>Experience</h3>
+
+      <div class="timeline">
+        <div class="job">
+          <h4>Software Developer — Al Hadaf Technologies, New Delhi</h4>
+          <div class="muted">August 2025 – Present</div>
+          <ul class="bullet">
+            <li>Built multi-level marketing (MLM) system modules in ASP.NET (C#) — role-based dashboards, user activation and downline handling.</li>
+            <li>Designed Fund Wallet, ROI, Top-up, Withdrawals and Fund Request flows with admin approval and QR/payment integrations.</li>
+            <li>Optimized SQL Server queries and architecture for hierarchical data and scalable multi-level reporting (Income Summary, user updates).</li>
+            <li>Managed user profile, password flows, activation and investment tracking features.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <h4>Software Development Intern — Thryv Tech Labs, Goa</h4>
+          <div class="muted">Feb 2025 – Aug 2025</div>
+          <ul class="bullet">
+            <li>Development of HROne(HRMS) using Node.js/Express/MySQL with authentication and admin dashboards.</li>
+            <li>Developed a full-stack User Management System using Node.js, Express, and MySQL with registration, email verification, secure login, and CRUD operations.</li>
+            <li>Built responsive WordPress sites (EduAdvise, MapPoint) using Elementor and custom themes.</li>
+            <li>Implemented small web utilities (Income Tax Calculator, Text Encryption App) with clean, validated UX.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="card fade-in">
+      <h3>Education & Certification</h3>
+      <div class="grid">
+        <div>
+          <div class="job">
+            <h4>B.Tech — Computer Science & Engineering</h4>
+            <div class="muted">Dr. A.P.J. Abdul Kalam Technical University, Lucknow — June 2024</div>
+            <p class="muted">CGPA: 7.31</p>
+          </div>
+        </div>
+        <div>
+          <div class="job">
+            <h4>Advanced Diploma in Computer Applications</h4>
+            <div class="muted">A.K. Tech Computer Institute, Bareilly — June 2019</div>
+            <p class="muted">Grade: A</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="card fade-in">
+      <h3>Contact</h3>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <p class="muted">Want to discuss a project, open role or collaboration?</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <a class="chip" href="tel:+919058867374">+91 9058867374</a>
+            <a class="chip" href="mailto:shariqkhan435@gmail.com">Email</a>
+             <a class="chip" href="https://wa.me/919058867374" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="chip" href="https://www.linkedin.com/in/mohd-shariq-ali-khan-a1b6792bb/" target="_blank" rel="noopener">LinkedIn</a> 
+            <a class="chip" href="https://github.com/shariqkhan74" target="_blank" rel="noopener">GitHub</a>
+       
+          </div>
+
+          <div style="margin-top:12px;color:var(--muted)"><strong>Location:</strong> Thiriya Nizawat Khan, Bareilly, U.P., India</div>
+        </div>
+
+        <form id="contactForm" class="card" onsubmit="return handleFormSubmit(event)" aria-label="Contact form">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" required>
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required>
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5"  required></textarea>
+
+          <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:8px">
+            <button type="submit">Send Message</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer class="muted">
+      © <span id="year"></span> Mohd Shariq Ali Khan
+    </footer>
+
+  </main>
+
+  <script>
+    // Update year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth active nav highlighting & scroll spy using IntersectionObserver
+    const sections = document.querySelectorAll('main section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const id = entry.target.id;
+        const nav = document.querySelector('.nav-link[href="#' + id + '"]');
+        if (entry.isIntersecting) {
+          navLinks.forEach(a => a.classList.remove('active'));
+          if (nav) nav.classList.add('active');
+        }
+      });
+    }, { root: null, rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+
+    sections.forEach(sec => observer.observe(sec));
+
+    // Fade-in elements & animated skill bars
+    const faders = document.querySelectorAll('.fade-in');
+    const faderObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.15});
+
+    faders.forEach(el => faderObserver.observe(el));
+
+    // Animate skill bars when skills section in view
+    const skillsSection = document.getElementById('skills');
+    const fills = document.querySelectorAll('.fill');
+    const skillsObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          fills.forEach(f => {
+            const to = f.getAttribute('data-fill') || '70%';
+            f.style.width = to;
+          });
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.2});
+    if (skillsSection) skillsObserver.observe(skillsSection);
+
+    // Contact form handler — uses mailto fallback
+    function handleFormSubmit(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if(!name || !email || !message){
+        alert('Please fill all fields.');
+        return false;
+      }
+
+      const subject = encodeURIComponent('Portfolio Contact from ' + name);
+      const body = encodeURIComponent('Name: ' + name + '\\nEmail: ' + email + '\\n\\n' + message);
+      // Try to open mail client
+      window.location.href = 'mailto:shariqkhan435@gmail.com?subject=' + subject + '&body=' + body;
+      return false;
+    }
+
+    /* Optional: close mobile nav etc. (nav collapses in CSS for narrow screens) */
+  </script>
+
+</body>
+</html>
