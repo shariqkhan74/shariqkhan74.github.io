@@ -10,8 +10,8 @@
 
   <style>
     :root{
-      --bg1: #5b21b6; /* deep purple */
-      --bg2: #06b6d4; /* cyan */
+      --bg1: #5b21b6;
+      --bg2: #06b6d4;
       --glass: rgba(255,255,255,0.08);
       --card: rgba(255,255,255,0.06);
       --accent: #9be7ff;
@@ -20,8 +20,10 @@
       --glass-border: rgba(255,255,255,0.12);
       --max-width: 1100px;
       --radius: 14px;
+      --gutter: 20px;
     }
 
+    /* Basic reset */
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -33,31 +35,28 @@
       -moz-osx-font-smoothing:grayscale;
       scroll-behavior:smooth;
       line-height:1.45;
+      -webkit-font-smoothing:antialiased;
     }
 
-    /* container */
-    .wrap{
-      max-width:var(--max-width);
-      margin:0 auto;
-      padding:48px 20px;
-    }
+    /* Container */
+    .wrap{max-width:var(--max-width);margin:0 auto;padding:48px var(--gutter);}
 
-    /* glass card */
+    /* Card */
     .card{
       background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
       border:1px solid var(--glass-border);
       backdrop-filter: blur(8px) saturate(1.2);
       border-radius:var(--radius);
-      padding:24px;
+      padding:22px;
       box-shadow: 0 6px 30px rgba(2,6,23,0.35);
     }
 
     /* NAVBAR */
     header {
       position: sticky;
-      top: 12px;
-      z-index: 50;
-      padding: 12px 20px;
+      top: 10px;
+      z-index: 60;
+      padding: 10px var(--gutter);
       display:flex;
       justify-content:center;
       pointer-events:auto;
@@ -69,6 +68,7 @@
       align-items:center;
       justify-content:space-between;
       gap:12px;
+      padding:8px;
     }
     .brand{
       display:flex;
@@ -80,21 +80,39 @@
       background:linear-gradient(135deg,var(--accent),rgba(255,255,255,0.12));
       display:flex;align-items:center;justify-content:center;
       color:#06202a;font-weight:700;font-size:18px;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+      text-align:center;
+      flex-shrink:0;
     }
     .brand h1{margin:0;font-size:16px;font-weight:700}
     .brand p{margin:0;font-size:12px;color:var(--muted)}
 
-    nav{display:flex;gap:10px;align-items:center}
+    nav{display:flex;gap:8px;align-items:center}
     nav a{
       color:var(--muted);
       text-decoration:none;
-      padding:10px 14px;border-radius:10px;
+      padding:8px 12px;border-radius:10px;
       font-weight:600;font-size:14px;
-      transition: all .22s ease;
+      transition: all .18s ease;
     }
-    nav a:hover{background:rgba(255,255,255,0.04); color:var(--text); transform:translateY(-2px)}
+    nav a:hover{background:rgba(255,255,255,0.04); color:var(--text)}
     nav a.active{background:linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); color:var(--text); box-shadow: inset 0 -3px 0 rgba(255,255,255,0.03)}
+
+    /* Mobile nav toggle */
+    .nav-toggle{
+      display:none;
+      background:transparent;border:1px solid rgba(255,255,255,0.04);
+      padding:8px;border-radius:10px;color:var(--muted);
+      cursor:pointer;
+    }
+    .nav-mobile{
+      display:none;
+      position:absolute;
+      top:72px;
+      right:var(--gutter);
+      width:calc(100% - 40px);
+      max-width:320px;
+      z-index:70;
+    }
 
     /* HERO */
     .hero{
@@ -104,13 +122,13 @@
       align-items:center;
       padding:60px 0 36px;
     }
-    .hero-left h2{margin:0;font-size:22px;color:var(--muted);font-weight:600}
+    .hero-left h2{margin:0;font-size:20px;color:var(--muted);font-weight:600}
     .hero-left h1{margin:8px 0 14px;font-size:36px;line-height:1.05}
     .hero-left p{margin:0 0 18px;color:var(--muted)}
     .cta{
       display:inline-flex;gap:12px;align-items:center;
       background:linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-      padding:12px 18px;border-radius:12px;color:var(--text);text-decoration:none;font-weight:700;
+      padding:10px 16px;border-radius:12px;color:var(--text);text-decoration:none;font-weight:700;
       transition: transform .18s ease, box-shadow .18s ease;
     }
     .cta:hover{transform:translateY(-4px); box-shadow:0 8px 30px rgba(2,6,23,0.45)}
@@ -127,7 +145,7 @@
     .meta{font-size:14px;color:var(--muted)}
 
     /* SECTIONS */
-    section{padding:52px 0}
+    section{padding:44px 0}
     section h3{margin:0 0 18px;font-size:20px}
     .grid{
       display:grid;
@@ -135,11 +153,8 @@
       grid-template-columns:repeat(2,1fr);
     }
 
-    /* About */
-    .about p{color:var(--muted)}
-
     /* Skills */
-    .skills{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+    .skills{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
     .skill-tag{
       background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
       padding:8px 12px;border-radius:999px;font-weight:600;font-size:13px;color:var(--muted);
@@ -164,10 +179,11 @@
       display:flex;gap:14px;align-items:flex-start;
       padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);
       transition: transform .16s ease, box-shadow .16s ease;
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
     }
     .project:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(2,6,23,0.4)}
-    .project-thumb{width:88px;height:68px;border-radius:10px;background:linear-gradient(135deg,#fff1,rgba(255,255,255,0.02));display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--text)}
-    .project-body h4{margin:0 0 6px}
+    .project-thumb{width:88px;height:68px;border-radius:10px;background:linear-gradient(135deg,#fff1,rgba(255,255,255,0.02));display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--text);flex-shrink:0}
+    .project-body h4{margin:0 0 6px;font-size:16px}
     .project-body p{margin:0;font-size:14px;color:var(--muted)}
     .tech {margin-top:8px;font-size:12px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}
     .chip{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:8px;font-size:12px;border:1px solid rgba(255,255,255,0.02)}
@@ -175,46 +191,135 @@
     /* Experience & Education */
     .timeline{display:flex;flex-direction:column;gap:12px}
     .job{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
-    .job h4{margin:0}
+    .job h4{margin:0;font-size:16px}
     .job p{margin:6px 0 0;color:var(--muted)}
     .bullet{margin:8px 0 0;padding-left:16px;color:var(--muted)}
     .bullet li{margin-bottom:6px}
 
     /* Contact */
-    .contact-grid{display:grid;grid-template-columns:1fr 320px;gap:18px}
+    .contact-grid{display:grid;grid-template-columns:1fr 420px;gap:18px;align-items:start}
     .contact-card{display:flex;flex-direction:column;gap:10px}
     .contact-card a{color:var(--muted);text-decoration:none;font-weight:600}
-    form label{display:block;margin-bottom:6px;font-weight:600;font-size:13px}
-    input,textarea{
-      width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);
-      background:transparent;color:var(--text);font-size:14px;
+
+    /* Modern Contact Form (Responsive) */
+    .modern-form {
+      padding: 24px;
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      width:100%;
     }
-    button[type="submit"]{
-      padding:10px 14px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent),rgba(255,255,255,0.18));
-      font-weight:700;cursor:pointer;
+
+    .form-group {position:relative;width:100%}
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 14px 14px 14px;
+      font-size: 15px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      transition: 0.20s ease;
+      resize: none;
     }
+    .form-group input:focus,
+    .form-group textarea:focus{
+      border-color: var(--accent);
+      box-shadow: 0 0 8px rgba(155,231,255,0.55);
+      background: rgba(255,255,255,0.07);
+      outline: none;
+    }
+    .form-group label {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      font-size: 14px;
+      color: var(--muted);
+      pointer-events: none;
+      transition: 0.20s ease;
+      background: transparent;
+    }
+    .form-group input:focus + label,
+    .form-group textarea:focus + label,
+    .form-group input:not(:placeholder-shown) + label,
+    .form-group textarea:not(:placeholder-shown) + label{
+      top: -8px;
+      left: 10px;
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 6px;
+      background: rgba(0,0,0,0.35);
+      color: var(--muted);
+    }
+
+    .modern-btn{
+      background: linear-gradient(90deg,var(--accent),rgba(255,255,255,0.25));
+      border: none;
+      padding: 12px 14px;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.18s ease;
+      width:100%;
+    }
+    .modern-btn:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(255,255,255,0.18)}
 
     /* Footer */
     footer{padding:26px 0;text-align:center;color:var(--muted);font-size:13px}
 
-    /* Responsive */
-    @media (max-width:980px){
-      .hero{grid-template-columns:1fr; text-align:left}
-      .grid{grid-template-columns:1fr}
-      .contact-grid{grid-template-columns:1fr}
-      header{top:8px}
-    }
-    @media (max-width:520px){
-      nav a{display:none}
-      .nav-right{display:flex;gap:10px}
-      .nav-toggle{display:inline-flex}
-    }
-
-    /* small helpers */
+    /* Helpers & small screens */
     .muted{color:var(--muted)}
     .mb{margin-bottom:12px}
     .fade-in{opacity:0; transform:translateY(12px); transition: all 680ms cubic-bezier(.2,.9,.3,1)}
     .in-view{opacity:1; transform:none}
+
+    /* Responsive Breakpoints */
+    @media (max-width:1100px){
+      .hero{grid-template-columns:1fr 340px}
+      .contact-grid{grid-template-columns:1fr 320px}
+    }
+
+    @media (max-width:900px){
+      .grid{grid-template-columns:1fr}
+      .hero{grid-template-columns:1fr 320px}
+      .projects-list .project{flex-direction:row}
+      .nav-wrap{padding:8px 10px}
+    }
+
+    @media (max-width:760px){
+      .hero{grid-template-columns:1fr;gap:18px}
+      .hero-right{order:2}
+      .nav-toggle{display:inline-flex}
+      nav{display:none}
+      .nav-mobile{display:none} /* toggled by JS */
+      .contact-grid{grid-template-columns:1fr}
+      .project-thumb{width:78px;height:62px}
+      .avatar{width:96px;height:96px;font-size:28px}
+      .logo{width:44px;height:44px}
+    }
+
+    @media (max-width:520px){
+      .wrap{padding:28px 16px}
+      .hero-left h1{font-size:28px}
+      .hero-left p{font-size:14px}
+      .project-thumb{width:64px;height:52px}
+      .logo{width:40px;height:40px;font-size:16px}
+      .brand h1{font-size:15px}
+      .brand p{font-size:11px}
+      .modern-form{padding:18px;gap:14px}
+      .form-group label{font-size:13px}
+      .form-group input, .form-group textarea{font-size:14px;padding:12px}
+      .modern-btn{padding:11px;font-size:14px}
+    }
+
+    /* Ensure nav-mobile visible class */
+    .nav-mobile.show{display:block}
+    .nav-mobile .card{padding:12px}
+    .nav-mobile a{display:block;padding:10px 12px;border-radius:8px;color:var(--muted);text-decoration:none}
+    .nav-mobile a.active{background:rgba(255,255,255,0.04); color:var(--text)}
   </style>
 </head>
 <body>
@@ -223,7 +328,7 @@
   <header>
     <div class="nav-wrap card" role="banner">
       <div class="brand" aria-hidden="true">
-        <div class="logo">MS</div>
+        <div class="logo" aria-hidden="true">MS</div>
         <div>
           <h1>Mohd Shariq Ali Khan</h1>
           <p>Software Developer</p>
@@ -239,6 +344,22 @@
         <a href="#education" class="nav-link">Education</a>
         <a href="#contact" class="nav-link">Contact</a>
       </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav">Menu ▾</button>
+
+      <!-- mobile nav -->
+      <div id="mobileNav" class="nav-mobile" aria-hidden="true">
+        <div class="card">
+          <a href="#home" class="nav-link active" onclick="toggleMobileNav()">Home</a>
+          <a href="#about" class="nav-link" onclick="toggleMobileNav()">About</a>
+          <a href="#skills" class="nav-link" onclick="toggleMobileNav()">Skills</a>
+          <a href="#projects" class="nav-link" onclick="toggleMobileNav()">Projects</a>
+          <a href="#experience" class="nav-link" onclick="toggleMobileNav()">Experience</a>
+          <a href="#education" class="nav-link" onclick="toggleMobileNav()">Education</a>
+          <a href="#contact" class="nav-link" onclick="toggleMobileNav()">Contact</a>
+        </div>
+      </div>
+
     </div>
   </header>
 
@@ -250,14 +371,14 @@
       <div class="hero-left card fade-in">
         <h2>Hello, I'm</h2>
         <h1>Mohd Shariq Ali Khan</h1>
-        <p class="muted">Software developer building secure, scalable web apps with .NET, Node.js and modern frontends. I make clean UI and reliable backends that solve real problems.</p>
+        <p class="muted">Software developer building secure, scalable web apps with ASP.NET, Node.js & modern frontends. I make clean UI and reliable backends that solve real problems.</p>
 
-        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:18px">
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
           <a class="cta" href="#projects">View Projects →</a>
           <a class="cta" href="mailto:shariqkhan435@gmail.com" style="background:transparent;border:1px solid rgba(255,255,255,0.04)">Email Me</a>
         </div>
 
-        <div style="margin-top:20px;color:var(--muted);font-size:14px">
+        <div style="margin-top:18px;color:var(--muted);font-size:14px">
           <strong>Location:</strong> Bareilly, U.P., India — <strong>Open to roles in web & software development</strong>
         </div>
       </div>
@@ -267,7 +388,7 @@
           <div class="avatar">MS</div>
           <div style="font-weight:700">Mohd Shariq Ali Khan</div>
           <div class="meta">Software Developer — C#, ASP.NET, Node.js · B.Tech (CSE)</div>
-          <div style="display:flex;gap:10px;margin-top:8px">
+          <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap;justify-content:center">
             <a class="chip" href="mailto:shariqkhan435@gmail.com">Email</a>
             <a class="chip" href="https://wa.me/919058867374" target="_blank" rel="noopener">WhatsApp</a>
             <a class="chip" href="https://www.linkedin.com/in/mohd-shariq-ali-khan-a1b6792bb/" target="_blank" rel="noopener">LinkedIn</a>
@@ -282,10 +403,9 @@
       <h3>About Me</h3>
       <div class="grid">
         <div>
-          <p>
-            I'm a full-stack software developer experienced in building dynamic, secure, and scalable web applications using C#/.NET, Node.js/Express, and SQL-based databases.
-            I craft responsive user interfaces with HTML, CSS, JavaScript and Bootstrap, build RESTful APIs, and work with WordPress/Elementor for CMS-driven projects.
-            I enjoy solving real-world problems with clean code, modern design and pragmatic architecture.
+          <p class="muted">
+            I'm a full-stack software developer experienced in building dynamic, secure, and scalable web applications using C#, ASP.NET, Node.js and SQL/MySQL.
+            I craft responsive UIs with HTML, CSS, JavaScript and modern frameworks like React, build RESTful APIs and work with WordPress/Elementor for CMS-driven projects.
           </p>
         </div>
         <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start">
@@ -302,18 +422,22 @@
       <h3>Skills</h3>
 
       <div style="display:flex;gap:18px;flex-wrap:wrap">
-        <div style="flex:1;min-width:280px">
+        <div style="flex:1;min-width:260px">
           <div class="mb"><strong>Core</strong></div>
           <div class="skills mb">
             <span class="skill-tag">C# / ASP.NET</span>
+            <span class="skill-tag">ASP.NET Core</span>
+            <span class="skill-tag">Entity Framework Core</span>
+            <span class="skill-tag">React.js</span>
             <span class="skill-tag">Node.js / Express</span>
-            <span class="skill-tag">HTML • CSS • JS</span>
             <span class="skill-tag">REST APIs</span>
             <span class="skill-tag">SQL / MySQL</span>
+            <span class="skill-tag">HTML • CSS • JS</span>
+            <span class="skill-tag">Tailwind CSS</span>
             <span class="skill-tag">WordPress / Elementor</span>
           </div>
 
-          <div style="margin-top:14px">
+          <div style="margin-top:12px">
             <div class="skill-row">
               <div style="font-weight:700">Backend (.NET / Node.js)</div>
               <div class="muted">90%</div>
@@ -334,7 +458,7 @@
           </div>
         </div>
 
-        <div style="flex:1;min-width:260px">
+        <div style="flex:1;min-width:220px">
           <div class="mb"><strong>Tools & Platforms</strong></div>
           <div class="skills">
             <span class="skill-tag">Visual Studio</span>
@@ -344,7 +468,7 @@
             <span class="skill-tag">GitHub</span>
           </div>
 
-          <div style="margin-top:18px">
+          <div style="margin-top:16px">
             <div class="mb"><strong>Other</strong></div>
             <div class="muted">Experience with authentication, role-based access, session management, building admin/user dashboards, payment and wallet modules for multi-level systems.</div>
           </div>
@@ -357,58 +481,101 @@
       <h3>Selected Projects</h3>
       <div class="projects-list">
 
-        <!-- Project 1 -->
+        <article class="project">
+          <div class="project-thumb">AD</div>
+          <div class="project-body">
+            <h4>AuthDemoApp — Authentication & Authorization (ASP.NET Core)</h4>
+            <p>Secure ASP.NET Core MVC app demonstrating authentication, role-based authorization and EF Core identity integration.</p>
+            <div class="tech">
+              <span class="chip">ASP.NET Core</span>
+              <span class="chip">C#</span>
+              <span class="chip">EF Core</span>
+              <span class="chip">SQL Server</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-thumb">TD</div>
+          <div class="project-body">
+            <h4>Elegant Todo List — React Task Manager</h4>
+            <p>React-based task app with local persistence, component-driven UI and responsive design.</p>
+            <div class="tech">
+              <span class="chip">React.js</span>
+              <span class="chip">JavaScript</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-thumb">WA</div>
+          <div class="project-body">
+            <h4>Weather App — Real-Time Weather & 5-Day Forecast</h4>
+            <p>React app integrating OpenWeatherMap API to display current conditions and forecasts.</p>
+            <div class="tech">
+              <span class="chip">React.js</span>
+              <span class="chip">OpenWeatherMap</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-thumb">AS</div>
+          <div class="project-body">
+            <h4>AuthoSphere — User & Access Management (ASP.NET)</h4>
+            <p>Centralized user & access management system with roles, permissions and admin workflows.</p>
+            <div class="tech">
+              <span class="chip">ASP.NET</span>
+              <span class="chip">C#</span>
+              <span class="chip">SQL</span>
+            </div>
+          </div>
+        </article>
+
         <article class="project">
           <div class="project-thumb">UH</div>
           <div class="project-body">
             <h4>UserHub — Smart User Management</h4>
-            <p>Full-stack user management platform with registration, email verification, secure login, sessions and CRUD APIs. Clean EJS-driven UI and RESTful Node.js backend for reliable user workflows.</p>
+            <p>Secure scalable Node.js user management system with registration, email verification and RESTful APIs.</p>
             <div class="tech">
               <span class="chip">Node.js</span>
               <span class="chip">Express</span>
               <span class="chip">MySQL</span>
-              <span class="chip">EJS • Bootstrap</span>
             </div>
           </div>
         </article>
 
-        <!-- Project 2 -->
         <article class="project">
           <div class="project-thumb">HR</div>
           <div class="project-body">
             <h4>HROne — Lightweight HRMS</h4>
-            <p>An HR system built during an internship: authentication, role-based dashboards, APIs, and admin tools for department & designation management — practical for small businesses.</p>
+            <p>HRMS with role-based dashboards and admin tools for department & designation management.</p>
             <div class="tech">
               <span class="chip">Node.js</span>
-              <span class="chip">Express</span>
               <span class="chip">MySQL</span>
             </div>
           </div>
         </article>
 
-        <!-- Project 3 -->
         <article class="project">
           <div class="project-thumb">WP</div>
           <div class="project-body">
             <h4>EduAdvise & MapPoint — WordPress Sites</h4>
-            <p>Responsive, SEO-friendly WordPress websites built with Elementor: custom themes, interactive maps and content management tailored for education and services sites.</p>
+            <p>SEO-friendly WordPress sites built with Elementor and custom themes.</p>
             <div class="tech">
               <span class="chip">WordPress</span>
               <span class="chip">Elementor</span>
-              <span class="chip">SEO</span>
             </div>
           </div>
         </article>
 
-        <!-- Project 4 -->
         <article class="project">
-          <div class="project-thumb">Tools</div>
+          <div class="project-thumb">UT</div>
           <div class="project-body">
             <h4>Utility Apps — Tax Calculator & Text Encryptor</h4>
-            <p>Small front-end utilities (HTML/CSS/JS) — an income tax calculator with validation and a text encryption/decryption tool with a custom algorithm and responsive UI.</p>
+            <p>Small front-end tools for tax calculation and custom text encryption.</p>
             <div class="tech">
               <span class="chip">HTML/CSS/JS</span>
-              <span class="chip">UX</span>
             </div>
           </div>
         </article>
@@ -425,10 +592,11 @@
           <h4>Software Developer — Al Hadaf Technologies, New Delhi</h4>
           <div class="muted">August 2025 – Present</div>
           <ul class="bullet">
-            <li>Built multi-level marketing (MLM) system modules in ASP.NET (C#) — role-based dashboards, user activation and downline handling.</li>
-            <li>Designed Fund Wallet, ROI, Top-up, Withdrawals and Fund Request flows with admin approval and QR/payment integrations.</li>
-            <li>Optimized SQL Server queries and architecture for hierarchical data and scalable multi-level reporting (Income Summary, user updates).</li>
-            <li>Managed user profile, password flows, activation and investment tracking features.</li>
+            <li>Developed modular MLM software using C# and ASP.NET with interactive dashboards and role-based authentication.</li>
+            <li>Optimized SQL Server queries for multi-level downline management and reporting.</li>
+            <li>Built Fund Wallet, ROI, Transfers, Top-up, Investments and Withdrawals with admin approval flows.</li>
+            <li>Implemented QR-based fund requests and centralized admin controls.</li>
+            <li>Developed e-commerce modules and LMS platforms for course delivery and enrollment.</li>
           </ul>
         </div>
 
@@ -436,10 +604,10 @@
           <h4>Software Development Intern — Thryv Tech Labs, Goa</h4>
           <div class="muted">Feb 2025 – Aug 2025</div>
           <ul class="bullet">
-            <li>Development of HROne(HRMS) using Node.js/Express/MySQL with authentication and admin dashboards.</li>
-            <li>Developed a full-stack User Management System using Node.js, Express, and MySQL with registration, email verification, secure login, and CRUD operations.</li>
-            <li>Built responsive WordPress sites (EduAdvise, MapPoint) using Elementor and custom themes.</li>
-            <li>Implemented small web utilities (Income Tax Calculator, Text Encryption App) with clean, validated UX.</li>
+            <li>Built HROne HRMS with Node.js/Express/MySQL, authentication and admin dashboards.</li>
+            <li>Developed UserHub (Node.js, Express, MySQL) with email verification and CRUD APIs.</li>
+            <li>Created responsive WordPress websites (EduAdvise, MapPoint) using Elementor.</li>
+            <li>Developed utility web apps like Income Tax Calculator and Text Encryption App.</li>
           </ul>
         </div>
       </div>
@@ -458,8 +626,22 @@
         </div>
         <div>
           <div class="job">
-            <h4>Advanced Diploma in Computer Applications</h4>
-            <div class="muted">A.K. Tech Computer Institute, Bareilly — June 2019</div>
+            <h4>Intermediate — U.P. Board</h4>
+            <div class="muted">April 2018</div>
+            <p class="muted">Percentage: 69.6%</p>
+          </div>
+        </div>
+        <div>
+          <div class="job">
+            <h4>High School — U.P. Board</h4>
+            <div class="muted">May 2016</div>
+            <p class="muted">Percentage: 69.16%</p>
+          </div>
+        </div>
+        <div>
+          <div class="job">
+            <h4>Advance Diploma in Computer Application</h4>
+            <div class="muted">A.K. Tech Computer Education, Bareilly — April 2019</div>
             <p class="muted">Grade: A</p>
           </div>
         </div>
@@ -476,28 +658,31 @@
           <div style="display:flex;gap:8px;flex-wrap:wrap">
             <a class="chip" href="tel:+919058867374">+91 9058867374</a>
             <a class="chip" href="mailto:shariqkhan435@gmail.com">Email</a>
-             <a class="chip" href="https://wa.me/919058867374" target="_blank" rel="noopener">WhatsApp</a>
-            <a class="chip" href="https://www.linkedin.com/in/mohd-shariq-ali-khan-a1b6792bb/" target="_blank" rel="noopener">LinkedIn</a> 
-            <a class="chip" href="https://github.com/shariqkhan74" target="_blank" rel="noopener">GitHub</a>
-       
+            <a class="chip" href="https://wa.me/919058867374" target="_blank">WhatsApp</a>
+            <a class="chip" href="https://linkedin.com/in/mohd-shariq-ali-khan-a1b6792bb" target="_blank">LinkedIn</a>
+            <!-- <a class="chip" href="https://github.com/shariqkhan74" target="_blank">GitHub</a> -->
           </div>
 
           <div style="margin-top:12px;color:var(--muted)"><strong>Location:</strong> Thiriya Nizawat Khan, Bareilly, U.P., India</div>
         </div>
 
-        <form id="contactForm" class="card" onsubmit="return handleFormSubmit(event)" aria-label="Contact form">
-          <label for="name">Name</label>
-          <input id="name" name="name" type="text" required>
-
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" required>
-
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5"  required></textarea>
-
-          <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:8px">
-            <button type="submit">Send Message</button>
+        <form id="contactForm" class="card modern-form" onsubmit="return handleFormSubmit(event)" aria-label="Contact form">
+          <div class="form-group">
+            <input id="name" name="name" type="text" required placeholder=" ">
+            <label for="name">Your Name</label>
           </div>
+
+          <div class="form-group">
+            <input id="email" name="email" type="email" required placeholder=" ">
+            <label for="email">Your Email</label>
+          </div>
+
+          <div class="form-group">
+            <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
+            <label for="message">Your Message</label>
+          </div>
+
+          <button type="submit" class="modern-btn">Send Message</button>
         </form>
       </div>
     </section>
@@ -511,6 +696,29 @@
   <script>
     // Update year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const mobileNav = document.getElementById('mobileNav');
+
+    function toggleMobileNav(){
+      const isVisible = mobileNav.classList.toggle('show');
+      mobileNav.setAttribute('aria-hidden', !isVisible);
+      navToggle.setAttribute('aria-expanded', isVisible);
+    }
+
+    navToggle.addEventListener('click', (e) => {
+      toggleMobileNav();
+    });
+
+    // Close mobile nav when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!mobileNav.contains(e.target) && !navToggle.contains(e.target) && mobileNav.classList.contains('show')) {
+        mobileNav.classList.remove('show');
+        mobileNav.setAttribute('aria-hidden', 'true');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
 
     // Smooth active nav highlighting & scroll spy using IntersectionObserver
     const sections = document.querySelectorAll('main section[id]');
@@ -539,7 +747,6 @@
         }
       });
     }, {threshold: 0.15});
-
     faders.forEach(el => faderObserver.observe(el));
 
     // Animate skill bars when skills section in view
@@ -558,7 +765,7 @@
     }, {threshold: 0.2});
     if (skillsSection) skillsObserver.observe(skillsSection);
 
-    // Contact form handler — uses mailto fallback
+    // Contact form handler — uses mailto fallback and lightweight client validation
     function handleFormSubmit(e){
       e.preventDefault();
       const name = document.getElementById('name').value.trim();
@@ -576,7 +783,13 @@
       return false;
     }
 
-    /* Optional: close mobile nav etc. (nav collapses in CSS for narrow screens) */
+    // Accessibility: keyboard toggle for nav
+    navToggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMobileNav();
+      }
+    });
   </script>
 
 </body>
